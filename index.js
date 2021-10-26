@@ -1,4 +1,3 @@
-const { response } = require('express');
 const express = require('express');
 const cors = require('cors')
 const app = express();
@@ -13,21 +12,21 @@ app.get('/', (req, res) => {
 });
 
 const users = [
-    { id: 1, name: 'Sabana', email: 'Sabana@gamil.com', phone: '0181212121' },
-    { id: 2, name: 'Sabanoor', email: 'Sabanoor@gamil.com', phone: '0171212121' },
-    { id: 3, name: 'Sonia', email: 'Sonia@gamil.com', phone: '0191212121' },
-    { id: 4, name: 'Sosurita', email: 'Sosurita@gamil.com', phone: '0161212121' },
-    { id: 5, name: 'Sultana', email: 'Sultana@gamil.com', phone: '0151212121' },
-    { id: 6, name: 'Selina', email: 'Selina@gamil.com', phone: '0131212121' },
-    { id: 7, name: 'Sepali', email: 'Sepali@gamil.com', phone: '0141212121' },
+    { id: 0, name: 'Sabana', email: 'Sabana@gamil.com', phone: '0181212121' },
+    { id: 1, name: 'Sabanoor', email: 'Sabanoor@gamil.com', phone: '0171212121' },
+    { id: 2, name: 'Sonia', email: 'Sonia@gamil.com', phone: '0191212121' },
+    { id: 3, name: 'Sosurita', email: 'Sosurita@gamil.com', phone: '0161212121' },
+    { id: 4, name: 'Sultana', email: 'Sultana@gamil.com', phone: '0151212121' },
+    { id: 5, name: 'Selina', email: 'Selina@gamil.com', phone: '0131212121' },
+    { id: 6, name: 'Sepali', email: 'Sepali@gamil.com', phone: '0141212121' },
 ]
 
 app.get('/users', (req, res) => {
-    const search = (req.query.search);
+    const search = req.query.search;
     // use query peramitar
     if (search) {
         const searchResult = users.filter(user => user.name.toLocaleLowerCase().includes(search));
-        res.send(searchResult)
+        res.send(searchResult);
     }
     else {
         res.send(users);
@@ -51,7 +50,7 @@ app.get('/users/:id', (req, res) => {
     res.send(user);
 })
 app.get('/fruits', (req, res) => {
-    res.send('This is Fruits');
+    res.send(['mango', 'oranges', 'banana', 'apple']);
 })
 
 app.get('/fruits/mangoes/fazli', (req, res) => {
